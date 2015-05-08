@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Ellipse2D.Double;
 
@@ -18,7 +19,13 @@ public class MancalaPit extends Pit implements ChangeListener
 		pitWidth = 50;
 		pitHeight = 300;
 		pitShape = new Ellipse2D.Double(x, y, pitWidth, pitHeight);
-		//add mouselistener
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				
+			}
+		});
 	}
 	public void draw(Graphics2D g2)
 	{

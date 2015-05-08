@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.*;
 import java.awt.geom.Ellipse2D;
 
 import javax.swing.event.ChangeEvent;
@@ -17,7 +18,13 @@ public class RegularPit extends Pit implements ChangeListener
 		pitWidth = 60;
 		pitHeight = 50;
 		pitShape = new Ellipse2D.Double(x, y, pitWidth, pitHeight);
-		//add a mouse listener
+		addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				
+			}
+		});
 	}
 	public void draw(Graphics2D g2)
 	{
