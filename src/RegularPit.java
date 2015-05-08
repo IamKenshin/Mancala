@@ -1,8 +1,8 @@
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.*;
 import java.awt.geom.Ellipse2D;
-
+import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -13,34 +13,41 @@ import javax.swing.event.ChangeListener;
  */
 public class RegularPit extends Pit implements ChangeListener
 {
-	public RegularPit(int x, int y)
+	public RegularPit(JLabel newParent)
 	{
 		pitWidth = 60;
 		pitHeight = 50;
-		pitShape = new Ellipse2D.Double(x, y, pitWidth, pitHeight);
-		addMouseListener(new MouseAdapter(){
+		parent = newParent;
+		pitShape = new Ellipse2D.Double(0, 0, pitWidth, pitHeight);
+		/*addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
 				
 			}
-		});
-	}
-	public void draw(Graphics2D g2)
-	{
-		g2.draw(pitShape);
-	}
-	
-	public void paintComponent(Graphics g)
-	{
-		Graphics2D g2 = (Graphics2D) g;
-		
-		this.draw(g2);
+		});*/
 	}
 
 	@Override
 	public void stateChanged(ChangeEvent e)
 	{
-		//redraw
+		//change count to new number of marbles.
+		parent.repaint();
 	}
+
+	@Override
+	public void paintIcon(Component c, Graphics g, int x, int y)
+	{
+		Graphics2D g2 = (Graphics2D) g;
+		g2.draw(new Ellipse2D.Double(x, y, pitWidth, pitHeight));
+		//iterate through count and draw marbles.
+	}
+
+	@Override
+	public int getIconWidth()
+	{	return pitWidth + 1;	}
+
+	@Override
+	public int getIconHeight()
+	{	return pitHeight + 1;	}
 }
