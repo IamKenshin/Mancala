@@ -19,13 +19,6 @@ public class RegularPit extends Pit implements ChangeListener
 		pitHeight = 50;
 		parent = newParent;
 		pitShape = new Ellipse2D.Double(0, 0, pitWidth, pitHeight);
-		/*addMouseListener(new MouseAdapter(){
-			@Override
-			public void mouseClicked(MouseEvent e)
-			{
-				
-			}
-		});*/
 	}
 
 	@Override

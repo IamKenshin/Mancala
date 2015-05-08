@@ -21,13 +21,6 @@ public class MancalaPit extends Pit implements ChangeListener
 		pitHeight = 300;
 		parent = newParent;
 		pitShape = new Ellipse2D.Double(0, 0, pitWidth, pitHeight);
-		/*addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e)
-			{
-				
-			}
-		});*/
 	}
 
 	@Override
