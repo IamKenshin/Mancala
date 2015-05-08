@@ -13,6 +13,8 @@ public class Board extends JPanel
 	 */
 	public Board()
 	{
+		//We might want to think about using a null layout and manually setting the location for each pit.
+		//However, idk how the marbles would work.  Maybe create a JPanel for each pit and add a marble to it.
 		final JFrame board = new JFrame();
 		final JPanel northPanel = new JPanel();
 		final RegularPit nPit1 = new RegularPit(50, 10);
