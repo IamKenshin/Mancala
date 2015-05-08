@@ -1,6 +1,6 @@
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.Graphics;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  * This is to describe the general look of the app. All the views are added to this View, then this view is added to a JFrame in the main method.
@@ -13,7 +13,13 @@ public class Board extends JPanel
 	 */
 	public Board()
 	{
-		setLayout(new BorderLayout());
+		final JPanel board = new JPanel();
+		final JPanel northPanel = new JPanel();
+		northPanel.setLayout(new FlowLayout());
+		board.setLayout(new BorderLayout());
+		northPanel.add(new RegularPit(50, 10));
+		board.add(northPanel, BorderLayout.NORTH);
+		northPanel.setBounds(0, 0, 600, 200);
 		//add north panel with 6 RegularPits
 		//add south panel with 6 RegularPits
 		//add east panel with 1 MancalaPit

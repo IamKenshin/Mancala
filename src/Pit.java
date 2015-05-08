@@ -5,7 +5,8 @@ import javax.swing.JComponent;
 
 public abstract class Pit extends JComponent
 {
-	private Ellipse2D pitShape;
+	protected Ellipse2D pitShape;
+	protected int pitWidth, pitHeight;
 	/**
 	 * I'm not sure if the pits should store count, or if the model should...
 	 * @return
