@@ -15,12 +15,8 @@ public class MancalaTest
 		catch (IllegalAccessException e) {}
 		catch (UnsupportedLookAndFeelException e) {}
 		
-		JFrame frame = new JFrame();
-		frame.setSize(800, 400);
+		
 		Board board = new Board();
-		board.setBounds(0, 0, 800, 400);
-		frame.add(board);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+
 	}
 }

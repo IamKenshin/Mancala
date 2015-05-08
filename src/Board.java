@@ -1,5 +1,5 @@
 import java.awt.*;
-import java.awt.Graphics;
+
 import javax.swing.*;
 
 /**
@@ -13,17 +13,21 @@ public class Board extends JPanel
 	 */
 	public Board()
 	{
-		final JPanel board = new JPanel();
+		final JFrame board = new JFrame();
 		final JPanel northPanel = new JPanel();
+		final RegularPit nPit1 = new RegularPit(50, 10);
 		northPanel.setLayout(new FlowLayout());
+		board.setSize(800, 400);
 		board.setLayout(new BorderLayout());
-		northPanel.add(new RegularPit(50, 10));
+		northPanel.add(nPit1);
 		board.add(northPanel, BorderLayout.NORTH);
-		northPanel.setBounds(0, 0, 600, 200);
 		//add north panel with 6 RegularPits
 		//add south panel with 6 RegularPits
 		//add east panel with 1 MancalaPit
 		//add west panel with 1 MancalaPit
+		
+		board.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		board.setVisible(true);
 	}
 	
 	@Override
