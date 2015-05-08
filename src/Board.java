@@ -6,7 +6,7 @@ import javax.swing.*;
  * This is to describe the general look of the app. All the views are added to this View, then this view is added to a JFrame in the main method.
  * @author Team Dragon
  */
-public class Board extends JPanel
+public class Board extends JFrame
 {
 	/**
 	 * Constructor. Add all the pits to the panel.
