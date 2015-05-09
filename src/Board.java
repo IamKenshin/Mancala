@@ -80,8 +80,6 @@ public class Board extends JFrame
 		for(int i = 0; i < numberOfPits; i++)
 		{
 			JLabel label = new JLabel("B" + (numberOfPits-i));
-			
-			JLabel marbleCount = new JLabel("" + model.getNumberOfMarblesInPit(i));
 			label.addMouseListener(new MouseAdapter()
 			{
 				@Override
@@ -91,13 +89,13 @@ public class Board extends JFrame
 					{
 						//do Something
 					}
-					//what to do on mouse click. check to see if the player going belongs to these pits.
-					//remember, the MancalaPits are not clickable.
 				}
 			});
+
 			RegularPit pit = new RegularPit(model, label, i);
 			label.setIcon(pit);
 			model.attach(pit);
+			JLabel marbleCount = new JLabel("" + model.getNumberOfMarblesInPit(pit.getPitNumber()));
 			northPanel.add(label);
 			northPanel.add(marbleCount, BorderLayout.SOUTH); // For some reason all these have 0 value
 		}
@@ -110,7 +108,6 @@ public class Board extends JFrame
 		for(int i = 0; i < numberOfPits; i++)
 		{
 			JLabel label = new JLabel("A" +(i+1));
-			JLabel marbleCount = new JLabel("" + model.getNumberOfMarblesInPit(i));
 			label.addMouseListener(new MouseAdapter()
 			{
 				@Override
@@ -120,13 +117,12 @@ public class Board extends JFrame
 					{
 						//do something
 					}
-					//what to do on mouse click. check to see if the player going belongs to these pits.
-					//remember, the MancalaPits are not clickable.
 				}
 			});
 			RegularPit pit = new RegularPit(model, label, i + 6);
 			label.setIcon(pit);
 			model.attach(pit);
+			JLabel marbleCount = new JLabel("" + model.getNumberOfMarblesInPit(pit.getPitNumber()));
 			southPanel.add(label);
 			southPanel.add(marbleCount, BorderLayout.NORTH);
 		}
