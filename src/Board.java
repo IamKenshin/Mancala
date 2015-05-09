@@ -87,7 +87,7 @@ public class Board extends JFrame
 				{
 					if(!model.getPlayer())
 					{
-						
+						//do Something
 					}
 					//what to do on mouse click. check to see if the player going belongs to these pits.
 					//remember, the MancalaPits are not clickable.
@@ -114,7 +114,7 @@ public class Board extends JFrame
 				{
 					if(!model.getPlayer())
 					{
-						
+						//do something
 					}
 					//what to do on mouse click. check to see if the player going belongs to these pits.
 					//remember, the MancalaPits are not clickable.
