@@ -9,8 +9,8 @@ import java.awt.geom.Ellipse2D;
  */
 public class Marble
 {
-	private static int width = 10;
-	private static int height = 10;
+	private static int width = 17;
+	private static int height = 17;
 	private static int pitWidth = 60;
 	private static int pitHeight = 50;
 	private Marble()
