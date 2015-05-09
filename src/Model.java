@@ -7,14 +7,14 @@ import java.util.ArrayList;
  */
 public class Model
 {
-	private ArrayList<Pit> southPits; // belong to player 1
-	private ArrayList<Pit> northPits; // belong to player 2
+	private Pit[] pits; // belong to player 1
+	//private ArrayList<Pit> northPits; // belong to player 2
 	public final static boolean NORTH_PITS = true;
 	public final static boolean SOUTH_PITS = false;
 	public Model()
 	{
-		southPits = new ArrayList<Pit>();
-		northPits = new ArrayList<Pit>();
+		pits = new Pit[12];
+		//= new ArrayList<Pit>();
 	}
 	
 	/**
@@ -25,6 +25,8 @@ public class Model
 	public int numberOfMarblesInPit(int whichPitToAccess)
 	{
 		int output = 0; // This should access the corresponding pit and call getCount();
+		
+		
 		return output;
 	}
 	
@@ -35,6 +37,7 @@ public class Model
 	 */
 	public void removeAllMarbles(int whichPitToRemoveFrom)
 	{
+		
 		
 	}
 	
@@ -56,10 +59,13 @@ public class Model
 	public void attach(Pit pitToAttach, boolean pitBank)
 	{
 		
-		if(pitBank == NORTH_PITS)
-			northPits.add(pitToAttach);
-		else
-			southPits.add(pitToAttach);
+//		if(pitBank == NORTH_PITS)
+//			northPits.add(pitToAttach);
+//		else
+//			southPits.add(pitToAttach);
+		
+		
+		
 			
 	}
 }
