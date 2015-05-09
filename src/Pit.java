@@ -16,4 +16,7 @@ public abstract class Pit implements Icon, ChangeListener
 	protected Model model;
 	protected int pitNumber;
 	public abstract void stateChanged(ChangeEvent e);
+	public int getPitNumber()
+	{	return pitNumber;	}
+	public abstract boolean isRegularPit();
 }

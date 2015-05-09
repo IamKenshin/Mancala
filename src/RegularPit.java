@@ -22,6 +22,7 @@ public class RegularPit extends Pit
 		pitShape = new Ellipse2D.Double(0, 0, pitWidth, pitHeight);
 	}
 
+
 	@Override
 	public void stateChanged(ChangeEvent e)
 	{
@@ -43,4 +44,8 @@ public class RegularPit extends Pit
 	@Override
 	public int getIconHeight()
 	{	return pitHeight + 1;	}
+	
+	@Override
+	public boolean isRegularPit()
+	{	return true;	}
 }

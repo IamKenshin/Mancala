@@ -17,7 +17,6 @@ public class Marble
 	{}
 	public static void draw(Graphics2D g2, int numberToDraw)
 	{
-
 		if(numberToDraw == 1)
 		{	drawOne(g2);	}
 		if(numberToDraw == 2)

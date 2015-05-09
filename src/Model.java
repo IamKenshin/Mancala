@@ -1,3 +1,5 @@
+import javax.swing.event.ChangeEvent;
+
 /**
  * This is the model that holds all the data. It does all the heavy lifting of the app, and all the views just reflect what happens here.
  * There are alot of issues with this Class right now. I'm not sure how to access the pits exactly with parameters, so those int parameters are just dummies for now.
@@ -8,25 +10,15 @@ public class Model
 	private Pit[] pits;
 	private int[] numberOfMarbles;
 	private int initialNumberOfMarbles;
-	public Model(int initialMarbleCount)
+	
+	public Model ()
 	{
-		initialNumberOfMarbles = initialMarbleCount;
 		pits = new Pit[12];
 		numberOfMarbles = new int[12];
-		//= new ArrayList<Pit>();
 	}
 	
-	public Model (){
-		pits = new Pit[12];
-		numberOfMarbles = new int[12];
-		
-		
-	}
-	
-	
-	
-	
-	
+	public void setInitialNumberOfMarbles(int initialNumber)
+	{	initialNumberOfMarbles = initialNumber;	}
 	
 	/**
 	 * 
@@ -46,6 +38,7 @@ public class Model
 	public void removeAllMarbles(int whichPitToRemoveFrom)
 	{
 		numberOfMarbles[whichPitToRemoveFrom] = 0;
+		notifyListener(whichPitToRemoveFrom);
 	}
 	
 	/**
@@ -56,6 +49,7 @@ public class Model
 	public void addOneMarble(int whichPitToAddTo)
 	{
 		numberOfMarbles[whichPitToAddTo]++;
+		notifyListener(whichPitToAddTo);
 	}
 	
 	/**
@@ -65,11 +59,15 @@ public class Model
 	 */
 	public void attach(Pit pitToAttach)
 	{
-		int i = 0;
-		while(pits[i] != null)
-			i++;
-		pits[i] = pitToAttach;
-		if(i < 10)
-			numberOfMarbles[i] = initialNumberOfMarbles;
+		int pitNumber = pitToAttach.getPitNumber();
+		pits[pitNumber] = pitToAttach;
+		if(pitToAttach.isRegularPit())
+			numberOfMarbles[pitNumber] = initialNumberOfMarbles;
+		else
+			numberOfMarbles[pitNumber] = 0;
+	}
+	private void notifyListener(int listener)
+	{
+		pits[listener].stateChanged(new ChangeEvent(this));
 	}
 }

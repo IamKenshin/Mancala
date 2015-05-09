@@ -1,8 +1,9 @@
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,18 +23,14 @@ public class Board extends JFrame
 	public Board(Model newModel)
 	{
 		model = newModel;
-		
-		initializeNorth();
-		initializeSouth();
-		initializeEast();
-		initializeWest();
 		initializeCenter();
 		
 		this.setSize(600, 400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
-	private void initializeCenter() {
+	private void initializeCenter()
+	{
 		JButton b1 = new JButton(" 3 ");
 		JButton b2 = new JButton(" 4 ");
 		JLabel label = new JLabel("Select the number of marbles :" );
@@ -42,8 +39,40 @@ public class Board extends JFrame
 		jp.add(b1);
 		jp.add(b2);
 		
-		add(jp, BorderLayout.CENTER);
+		b1.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{	
+				model.setInitialNumberOfMarbles(3);
+				getContentPane().removeAll();
+				createBoard();
+				validate();
+				repaint();
+			}
+		});
 		
+		b2.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{	
+				model.setInitialNumberOfMarbles(4);
+				getContentPane().removeAll();
+				createBoard();
+				validate();
+				repaint();
+			}
+		});
+		add(jp, BorderLayout.CENTER);
+	}
+	
+	private void createBoard()
+	{
+		initializeNorth();
+		initializeSouth();
+		initializeEast();
+		initializeWest();
 	}
 	private void initializeNorth()
 	{
@@ -96,6 +125,7 @@ public class Board extends JFrame
 		JLabel eastLabel = new JLabel();
 		MancalaPit eastMancalaPit = new MancalaPit(model, eastLabel, 10);
 		eastLabel.setIcon(eastMancalaPit);
+		model.attach(eastMancalaPit);
 		add(eastLabel, BorderLayout.EAST);
 	}
 	private void initializeWest()
@@ -103,6 +133,7 @@ public class Board extends JFrame
 		JLabel westLabel = new JLabel();
 		MancalaPit westMancalaPit = new MancalaPit(model, westLabel, 11);
 		westLabel.setIcon(westMancalaPit);
+		model.attach(westMancalaPit);
 		add(westLabel, BorderLayout.WEST);
 	}
 }

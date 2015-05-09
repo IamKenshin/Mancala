@@ -40,4 +40,7 @@ public class MancalaPit extends Pit
 	@Override
 	public int getIconHeight()
 	{	return pitHeight + 1;	}
+	@Override
+	public boolean isRegularPit()
+	{	return false;	}
 }
