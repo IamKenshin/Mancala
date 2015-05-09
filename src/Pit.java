@@ -1,7 +1,11 @@
 // here is a random comment. 
 // Random comment = new Random(); 
 //I fell in the pit.
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
@@ -16,8 +20,28 @@ public abstract class Pit implements Icon, ChangeListener
 	protected JLabel marbles;
 	protected Model model;
 	protected int pitNumber;
-	public abstract void stateChanged(ChangeEvent e);
+	
 	public int getPitNumber()
 	{	return pitNumber;	}
 	public abstract boolean isRegularPit();
+	public void paintIcon(Component c, Graphics g, int x, int y)
+	{
+		Graphics2D g2 = (Graphics2D) g;
+		g2.draw(new Ellipse2D.Double(x, y, pitWidth, pitHeight));
+		Marble.draw(g2, model.getNumberOfMarblesInPit(this));
+	}
+	
+
+	public void stateChanged(ChangeEvent e)
+	{
+		parent.repaint();
+		marbles.setText(""+ model.getNumberOfMarblesInPit(this));
+	}
+
+
+	public int getIconWidth()
+	{	return pitWidth + 1;	}
+
+	public int getIconHeight()
+	{	return pitHeight + 1;	}
 }

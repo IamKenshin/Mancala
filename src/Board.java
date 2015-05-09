@@ -25,7 +25,7 @@ public class Board extends JFrame
 		model = newModel;
 		initializeCenter();
 		
-		this.setSize(600, 400);
+		this.setSize(800, 400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
@@ -172,17 +172,23 @@ public class Board extends JFrame
 	private void initializeEast()
 	{
 		JLabel eastLabel = new JLabel("A");
-		MancalaPit eastMancalaPit = new MancalaPit(model, eastLabel, 12);
+		JLabel marbleCount = new JLabel();
+		MancalaPit eastMancalaPit = new MancalaPit(model, eastLabel, marbleCount, 12);
 		eastLabel.setIcon(eastMancalaPit);
 		model.attach(eastMancalaPit);
+		marbleCount.setText("" + model.getNumberOfMarblesInPit(eastMancalaPit));
+		eastLabel.add(marbleCount, BorderLayout.SOUTH);
 		add(eastLabel, BorderLayout.EAST);
 	}
 	private void initializeWest()
 	{
 		JLabel westLabel = new JLabel("B");
-		MancalaPit westMancalaPit = new MancalaPit(model, westLabel, 13);
+		JLabel marbleCount = new JLabel();
+		MancalaPit westMancalaPit = new MancalaPit(model, westLabel, marbleCount, 13);
 		westLabel.setIcon(westMancalaPit);
 		model.attach(westMancalaPit);
+		marbleCount.setText("" + model.getNumberOfMarblesInPit(westMancalaPit));
+		westLabel.add(marbleCount, BorderLayout.SOUTH);
 		add(westLabel, BorderLayout.WEST);
 	}
 }
