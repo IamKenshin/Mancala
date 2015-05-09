@@ -79,7 +79,7 @@ public class Board extends JFrame
 		JPanel northPanel = new JPanel();
 		for(int i = 0; i < numberOfPits; i++)
 		{
-			JLabel label = new JLabel();
+			JLabel label = new JLabel("B" + (numberOfPits-i));
 			label.addMouseListener(new MouseAdapter()
 			{
 				@Override
@@ -102,7 +102,7 @@ public class Board extends JFrame
 		JPanel southPanel = new JPanel();
 		for(int i = 0; i < numberOfPits; i++)
 		{
-			JLabel label = new JLabel();
+			JLabel label = new JLabel("A" +(i+1));
 			label.addMouseListener(new MouseAdapter()
 			{
 				@Override
@@ -122,7 +122,7 @@ public class Board extends JFrame
 	
 	private void initializeEast()
 	{
-		JLabel eastLabel = new JLabel();
+		JLabel eastLabel = new JLabel("A");
 		MancalaPit eastMancalaPit = new MancalaPit(model, eastLabel, 12);
 		eastLabel.setIcon(eastMancalaPit);
 		model.attach(eastMancalaPit);
@@ -130,7 +130,7 @@ public class Board extends JFrame
 	}
 	private void initializeWest()
 	{
-		JLabel westLabel = new JLabel();
+		JLabel westLabel = new JLabel("B");
 		MancalaPit westMancalaPit = new MancalaPit(model, westLabel, 13);
 		westLabel.setIcon(westMancalaPit);
 		model.attach(westMancalaPit);
