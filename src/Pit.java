@@ -18,6 +18,7 @@ public abstract class Pit implements Icon, ChangeListener
 	protected int pitWidth, pitHeight;
 	protected JLabel parent;
 	protected JLabel marbles;
+	protected JLabel winner;
 	protected Model model;
 	protected int pitNumber;
 	
@@ -35,34 +36,14 @@ public void stateChanged(ChangeEvent e)
 	{
 		parent.repaint();
 		marbles.setText(""+ model.getNumberOfMarblesInPit(this));
+		//winner.setText("" + model.checkForWinner());
 		//int a = endOfGmae();
 		
-		 if ( endOfGmae1() == 0 ||  endOfGmae2() == 0){
-			 System.out.println(" the end of game");
-		 }
+		 
 		
 		
-	}
-	
-	public int endOfGmae1(){
-		int i = 0;
-		int count = 0;
-		while ( i < 6){
-			count += Model.numberOfMarbles[i];
-			i++;
-		}
-		return count;
 	}
 
-	public int endOfGmae2(){
-		int i = 6;
-		int count = 0;
-		while ( i < 12){
-			count += Model.numberOfMarbles[i];
-			i++;
-		}
-		return count;
-	}
 
 	public int getIconWidth()
 	{	return pitWidth + 1;	}

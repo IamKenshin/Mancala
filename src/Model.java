@@ -109,6 +109,61 @@ public class Model
 		else
 			numberOfMarbles[pitNumber] = 0;
 	}
+	
+	public String checkForWinner()
+	{
+		int count = 0;
+		
+		if ( endOfGame1() == 0 ||  endOfGame2() == 0)
+		{
+			if(endOfGame1() == 0)
+			{
+				for(int i = 6; i<12; i++)
+				{
+					count+= numberOfMarbles[i];
+				}
+				numberOfMarbles[12] += count;
+			}
+			else if(endOfGame2() == 0)
+			{
+				for(int i = 0; i < 6; i++)
+				{
+					count+= numberOfMarbles[i];
+				}
+				numberOfMarbles[13] += count;
+			}
+			
+			if(numberOfMarbles[12] > numberOfMarbles[13])
+			{
+				return "Winner: Player A";
+			}	
+			else
+				return "Winner: Player B";
+		}
+		return "";
+		
+	}
+	
+	public int endOfGame1(){
+		int i = 0;
+		int count = 0;
+		while ( i < 6){
+			count += numberOfMarbles[i];
+			i++;
+		}
+		return count;
+	}
+
+	public int endOfGame2(){
+		int i = 6;
+		int count = 0;
+		while ( i < 12){
+			count += numberOfMarbles[i];
+			i++;
+		}
+		return count;
+	}
+
 	private void notifyListener(int listener)
 	{
 		pits[listener].stateChanged(new ChangeEvent(this));
