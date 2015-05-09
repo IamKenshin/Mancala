@@ -1,9 +1,7 @@
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.*;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Ellipse2D.Double;
 import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -15,26 +13,27 @@ import javax.swing.event.ChangeListener;
  */
 public class MancalaPit extends Pit implements ChangeListener
 {
-	public MancalaPit(JLabel newParent)
+	public MancalaPit(Model m, JLabel newParent, int pit)
 	{
-		pitWidth = 50;
-		pitHeight = 300;
+		model = m;
 		parent = newParent;
+		pitNumber = pit;
+		pitWidth = 50;
+		pitHeight = 250;
 		pitShape = new Ellipse2D.Double(0, 0, pitWidth, pitHeight);
 	}
 
 	@Override
 	public void stateChanged(ChangeEvent e)
 	{
-		//change count to new number of marbles.
 		parent.repaint();
 	}
 	@Override
 	public void paintIcon(Component c, Graphics g, int x, int y)
 	{
 		Graphics2D g2 = (Graphics2D) g;
-		g2.draw(new Ellipse2D.Double(x, y, pitWidth - 1, pitHeight - 1));
-		//iterate through count and draw marbles.
+		g2.draw(new Ellipse2D.Double(x, y, pitWidth, pitHeight));
+		Marble.draw(g2, model.getNumberOfMarblesInPit(pitNumber));
 	}
 	@Override
 	public int getIconWidth()

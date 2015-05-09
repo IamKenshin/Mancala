@@ -11,7 +11,7 @@ public class MancalaTest
 		catch (IllegalAccessException e) {}
 		catch (UnsupportedLookAndFeelException e) {}
 		
-		
-		new Board();
+		Model model = new Model(3);
+		new Board(model);
 	}
 }

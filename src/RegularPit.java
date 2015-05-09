@@ -13,18 +13,19 @@ import javax.swing.event.ChangeListener;
  */
 public class RegularPit extends Pit implements ChangeListener
 {
-	public RegularPit(JLabel newParent)
+	public RegularPit(Model m, JLabel newParent, int pit)
 	{
+		model = m;
+		parent = newParent;
+		pitNumber = pit;
 		pitWidth = 60;
 		pitHeight = 50;
-		parent = newParent;
 		pitShape = new Ellipse2D.Double(0, 0, pitWidth, pitHeight);
 	}
 
 	@Override
 	public void stateChanged(ChangeEvent e)
 	{
-		//change count to new number of marbles.
 		parent.repaint();
 	}
 
@@ -33,7 +34,7 @@ public class RegularPit extends Pit implements ChangeListener
 	{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.draw(new Ellipse2D.Double(x, y, pitWidth, pitHeight));
-		Marble.draw(g2, 3);//TODO change this to get the number from the model
+		Marble.draw(g2, model.getNumberOfMarblesInPit(pitNumber));
 	}
 
 	@Override

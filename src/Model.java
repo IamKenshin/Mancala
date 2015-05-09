@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 /**
  * This is the model that holds all the data. It does all the heavy lifting of the app, and all the views just reflect what happens here.
@@ -7,13 +6,14 @@ import java.util.ArrayList;
  */
 public class Model
 {
-	private Pit[] pits; // belong to player 1
-	//private ArrayList<Pit> northPits; // belong to player 2
-	public final static boolean NORTH_PITS = true;
-	public final static boolean SOUTH_PITS = false;
-	public Model()
+	private Pit[] pits;
+	private int[] numberOfMarbles;
+	private int initialNumberOfMarbles;
+	public Model(int initialMarbleCount)
 	{
+		initialNumberOfMarbles = initialMarbleCount;
 		pits = new Pit[12];
+		numberOfMarbles = new int[12];
 		//= new ArrayList<Pit>();
 	}
 	
@@ -22,12 +22,9 @@ public class Model
 	 * @return the number of marbles in the corresponding Pit
 	 * @param whichPitToAccess
 	 */
-	public int numberOfMarblesInPit(int whichPitToAccess)
+	public int getNumberOfMarblesInPit(int whichPitToAccess)
 	{
-		int output = 0; // This should access the corresponding pit and call getCount();
-		
-		
-		return output;
+		return numberOfMarbles[whichPitToAccess];
 	}
 	
 	/**
@@ -37,8 +34,7 @@ public class Model
 	 */
 	public void removeAllMarbles(int whichPitToRemoveFrom)
 	{
-		
-		
+		numberOfMarbles[whichPitToRemoveFrom] = 0;
 	}
 	
 	/**
@@ -48,7 +44,7 @@ public class Model
 	 */
 	public void addOneMarble(int whichPitToAddTo)
 	{
-		
+		numberOfMarbles[whichPitToAddTo]++;
 	}
 	
 	/**
@@ -56,16 +52,13 @@ public class Model
 	 * @param pitToAttach
 	 * @param pitBank Use Model.NORTH_PITS or Model.SOUTH_PITS
 	 */
-	public void attach(Pit pitToAttach, boolean pitBank)
+	public void attach(Pit pitToAttach)
 	{
-		
-//		if(pitBank == NORTH_PITS)
-//			northPits.add(pitToAttach);
-//		else
-//			southPits.add(pitToAttach);
-		
-		
-		
-			
+		int i = 0;
+		while(pits[i] != null)
+			i++;
+		pits[i] = pitToAttach;
+		if(i < 10)
+			numberOfMarbles[i] = initialNumberOfMarbles;
 	}
 }

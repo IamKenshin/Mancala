@@ -14,12 +14,23 @@ public class Board extends JFrame
 	/**
 	 * Constructor. Add all the pits to the panel.
 	 */
-	public Board()
+	Model model;
+	private static int numberOfPits = 6;
+	public Board(Model newModel)
 	{
-		int numberOfPits = 6; // this is just in case anyone wants to change the number of pits later.
-		//We might want to think about using a null layout and manually setting the location for each pit.
-		//However, idk how the marbles would work.  Maybe create a JPanel for each pit and add a marble to it.
+		model = newModel;
 		
+		initializeNorth();
+		initializeSouth();
+		initializeEast();
+		initializeWest();
+		
+		this.setSize(600, 400);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+	}
+	private void initializeNorth()
+	{
 		JPanel northPanel = new JPanel();
 		for(int i = 0; i < numberOfPits; i++)
 		{
@@ -33,18 +44,49 @@ public class Board extends JFrame
 					//remember, the MancalaPits are not clickable.
 				}
 			});
-			label.setIcon(new RegularPit(label));
+			RegularPit pit = new RegularPit(model, label, i);
+			label.setIcon(pit);
+			model.attach(pit);
 			northPanel.add(label);
 		}
 		add(northPanel, BorderLayout.NORTH);
-
-		//add north panel with 6 RegularPits done.
-		//add south panel with 6 RegularPits
-		//add east panel with 1 MancalaPit
-		//add west panel with 1 MancalaPit
-		
-		this.setSize(800, 400);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
+	}
+	
+	private void initializeSouth()
+	{
+		JPanel southPanel = new JPanel();
+		for(int i = 0; i < numberOfPits; i++)
+		{
+			JLabel label = new JLabel();
+			label.addMouseListener(new MouseAdapter()
+			{
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					//what to do on mouse click. check to see if the player going belongs to these pits.
+					//remember, the MancalaPits are not clickable.
+				}
+			});
+			RegularPit pit = new RegularPit(model, label, i + 6);
+			label.setIcon(pit);
+			model.attach(pit);
+			southPanel.add(label);
+		}
+		add(southPanel, BorderLayout.SOUTH);
+	}
+	
+	private void initializeEast()
+	{
+		JLabel eastLabel = new JLabel();
+		MancalaPit eastMancalaPit = new MancalaPit(model, eastLabel, 10);
+		eastLabel.setIcon(eastMancalaPit);
+		add(eastLabel, BorderLayout.EAST);
+	}
+	private void initializeWest()
+	{
+		JLabel westLabel = new JLabel();
+		MancalaPit westMancalaPit = new MancalaPit(model, westLabel, 11);
+		westLabel.setIcon(westMancalaPit);
+		add(westLabel, BorderLayout.WEST);
 	}
 }
