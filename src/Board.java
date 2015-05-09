@@ -171,24 +171,28 @@ public class Board extends JFrame
 	
 	private void initializeEast()
 	{
+		JPanel eastPanel = new JPanel();
 		JLabel eastLabel = new JLabel("A");
 		JLabel marbleCount = new JLabel();
 		MancalaPit eastMancalaPit = new MancalaPit(model, eastLabel, marbleCount, 12);
 		eastLabel.setIcon(eastMancalaPit);
 		model.attach(eastMancalaPit);
 		marbleCount.setText("" + model.getNumberOfMarblesInPit(eastMancalaPit));
-		eastLabel.add(marbleCount, BorderLayout.SOUTH);
-		add(eastLabel, BorderLayout.EAST);
+		eastPanel.add(marbleCount, BorderLayout.WEST);
+		eastPanel.add(eastLabel);
+		add(eastPanel, BorderLayout.EAST);
 	}
 	private void initializeWest()
 	{
+		JPanel westPanel = new JPanel();
 		JLabel westLabel = new JLabel("B");
 		JLabel marbleCount = new JLabel();
 		MancalaPit westMancalaPit = new MancalaPit(model, westLabel, marbleCount, 13);
 		westLabel.setIcon(westMancalaPit);
 		model.attach(westMancalaPit);
 		marbleCount.setText("" + model.getNumberOfMarblesInPit(westMancalaPit));
-		westLabel.add(marbleCount, BorderLayout.SOUTH);
-		add(westLabel, BorderLayout.WEST);
+		westPanel.add(marbleCount, BorderLayout.EAST);
+		westPanel.add(westLabel);
+		add(westPanel, BorderLayout.WEST);
 	}
 }
