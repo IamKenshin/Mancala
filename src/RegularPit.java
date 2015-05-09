@@ -33,7 +33,7 @@ public class RegularPit extends Pit implements ChangeListener
 	{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.draw(new Ellipse2D.Double(x, y, pitWidth, pitHeight));
-		//iterate through count and draw marbles.
+		Marble.draw(g2, 3);//TODO change this to get the number from the model
 	}
 
 	@Override

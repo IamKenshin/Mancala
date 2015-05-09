@@ -12,6 +12,6 @@ public class MancalaTest
 		catch (UnsupportedLookAndFeelException e) {}
 		
 		
-		Board board = new Board();
+		new Board();
 	}
 }
