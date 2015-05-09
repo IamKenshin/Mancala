@@ -1,6 +1,9 @@
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,10 +27,23 @@ public class Board extends JFrame
 		initializeSouth();
 		initializeEast();
 		initializeWest();
+		initializeCenter();
 		
 		this.setSize(600, 400);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+	}
+	private void initializeCenter() {
+		JButton b1 = new JButton(" 3 ");
+		JButton b2 = new JButton(" 4 ");
+		JLabel label = new JLabel("Select the number of marbles :" );
+		JPanel jp = new JPanel(new FlowLayout());
+		jp.add(label);
+		jp.add(b1);
+		jp.add(b2);
+		
+		add(jp, BorderLayout.CENTER);
+		
 	}
 	private void initializeNorth()
 	{
