@@ -123,7 +123,7 @@ public class Board extends JFrame
 	private void initializeEast()
 	{
 		JLabel eastLabel = new JLabel();
-		MancalaPit eastMancalaPit = new MancalaPit(model, eastLabel, 10);
+		MancalaPit eastMancalaPit = new MancalaPit(model, eastLabel, 12);
 		eastLabel.setIcon(eastMancalaPit);
 		model.attach(eastMancalaPit);
 		add(eastLabel, BorderLayout.EAST);
@@ -131,7 +131,7 @@ public class Board extends JFrame
 	private void initializeWest()
 	{
 		JLabel westLabel = new JLabel();
-		MancalaPit westMancalaPit = new MancalaPit(model, westLabel, 11);
+		MancalaPit westMancalaPit = new MancalaPit(model, westLabel, 13);
 		westLabel.setIcon(westMancalaPit);
 		model.attach(westMancalaPit);
 		add(westLabel, BorderLayout.WEST);

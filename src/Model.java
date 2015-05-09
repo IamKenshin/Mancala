@@ -13,8 +13,8 @@ public class Model
 	
 	public Model ()
 	{
-		pits = new Pit[12];
-		numberOfMarbles = new int[12];
+		pits = new Pit[14];
+		numberOfMarbles = new int[14];
 	}
 	
 	public void setInitialNumberOfMarbles(int initialNumber)

@@ -23,6 +23,8 @@ public class Marble
 		{	drawTwo(g2);	}
 		if(numberToDraw == 3)
 		{	drawThree(g2);	}
+		if(numberToDraw >= 4)
+		{	drawFour(g2);	}
 	}
 	private static void drawOne(Graphics2D g2)
 	{
@@ -68,5 +70,30 @@ public class Marble
 		g2.fill(marble3);
 		g2.setColor(Color.BLACK);
 		g2.draw(marble3);
+	}
+	private static void drawFour(Graphics2D g2)
+	{
+		int x = (pitWidth/2) - ((width + (width / 2)) / 2);
+		int y = (pitHeight/2) - ((height + (height / 2)) / 2);
+		Ellipse2D.Double marble1 = new Ellipse2D.Double(x, y, width, height);
+		Ellipse2D.Double marble2 = new Ellipse2D.Double(x + width / 2, y, width, height);
+		Ellipse2D.Double marble3 = new Ellipse2D.Double(x, y + height / 2, width, height);
+		Ellipse2D.Double marble4 = new Ellipse2D.Double(x + width / 2, y + height / 2, width, height);
+		g2.setColor(Color.RED);
+		g2.fill(marble1);
+		g2.setColor(Color.BLACK);
+		g2.draw(marble1);
+		g2.setColor(Color.RED);
+		g2.fill(marble2);
+		g2.setColor(Color.BLACK);
+		g2.draw(marble2);
+		g2.setColor(Color.RED);
+		g2.fill(marble3);
+		g2.setColor(Color.BLACK);
+		g2.draw(marble3);
+		g2.setColor(Color.RED);
+		g2.fill(marble4);
+		g2.setColor(Color.BLACK);
+		g2.draw(marble4);
 	}
 }
