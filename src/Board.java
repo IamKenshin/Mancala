@@ -116,7 +116,7 @@ public class Board extends JFrame
 				}
 			});
 			northPanel.add(label);
-			northPanel.add(marbleCount, BorderLayout.SOUTH); // For some reason all these have 0 value
+			northPanel.add(marbleCount, BorderLayout.SOUTH);
 		}
 		add(northPanel, BorderLayout.NORTH);
 	}
