@@ -4,14 +4,13 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /**
  * The only purpose of this class is to describe what a MancalaPit looks like.
  * @author Team Dragon
  *
  */
-public class MancalaPit extends Pit implements ChangeListener
+public class MancalaPit extends Pit
 {
 	public MancalaPit(Model m, JLabel newParent, int pit)
 	{

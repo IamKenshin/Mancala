@@ -1,3 +1,5 @@
+import javax.swing.event.ChangeEvent;
+
 
 /**
  * This is the model that holds all the data. It does all the heavy lifting of the app, and all the views just reflect what happens here.
@@ -23,9 +25,7 @@ public class Model
 	 * @param whichPitToAccess
 	 */
 	public int getNumberOfMarblesInPit(int whichPitToAccess)
-	{
-		return numberOfMarbles[whichPitToAccess];
-	}
+	{	return numberOfMarbles[whichPitToAccess];	}
 	
 	/**
 	 * This is used when a pit is clicked on. This can only be a RegularPit. You cannot remove from a MancalaPit.
@@ -35,6 +35,7 @@ public class Model
 	public void removeAllMarbles(int whichPitToRemoveFrom)
 	{
 		numberOfMarbles[whichPitToRemoveFrom] = 0;
+		notifyListener(whichPitToRemoveFrom);
 	}
 	
 	/**
@@ -45,6 +46,7 @@ public class Model
 	public void addOneMarble(int whichPitToAddTo)
 	{
 		numberOfMarbles[whichPitToAddTo]++;
+		notifyListener(whichPitToAddTo);
 	}
 	
 	/**
@@ -60,5 +62,9 @@ public class Model
 		pits[i] = pitToAttach;
 		if(i < 10)
 			numberOfMarbles[i] = initialNumberOfMarbles;
+	}
+	private void notifyListener(int changedPit)
+	{
+		pits[changedPit].stateChanged(new ChangeEvent(this));
 	}
 }

@@ -4,8 +4,10 @@
 import java.awt.geom.Ellipse2D;
 import javax.swing.Icon;
 import javax.swing.JLabel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public abstract class Pit implements Icon
+public abstract class Pit implements Icon, ChangeListener
 {
 	//instead of doing protected variables, these should all be private with getters and setters. definitely low priority.
 	protected Ellipse2D pitShape;
@@ -13,4 +15,5 @@ public abstract class Pit implements Icon
 	protected JLabel parent;
 	protected Model model;
 	protected int pitNumber;
+	public abstract void stateChanged(ChangeEvent e);
 }

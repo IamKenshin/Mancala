@@ -4,14 +4,13 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /**
  * The purpose of this class is to describe what a RegularPit looks like, and to set up the controller.
  * @author Team Dragon
  *
  */
-public class RegularPit extends Pit implements ChangeListener
+public class RegularPit extends Pit
 {
 	public RegularPit(Model m, JLabel newParent, int pit)
 	{
