@@ -27,19 +27,23 @@ public class MancalaPit extends Pit
 	{
 		parent.repaint();
 	}
+	
 	@Override
 	public void paintIcon(Component c, Graphics g, int x, int y)
 	{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.draw(new Ellipse2D.Double(x, y, pitWidth, pitHeight));
-		Marble.draw(g2, model.getNumberOfMarblesInPit(pitNumber));
+		Marble.draw(g2, model.getNumberOfMarblesInPit(this));
 	}
+	
 	@Override
 	public int getIconWidth()
 	{	return pitWidth + 1;	}
+	
 	@Override
 	public int getIconHeight()
 	{	return pitHeight + 1;	}
+	
 	@Override
 	public boolean isRegularPit()
 	{	return false;	}

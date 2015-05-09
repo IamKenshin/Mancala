@@ -19,12 +19,14 @@ public class Marble
 	{
 		if(numberToDraw == 1)
 		{	drawOne(g2);	}
-		if(numberToDraw == 2)
+		else if(numberToDraw == 2)
 		{	drawTwo(g2);	}
-		if(numberToDraw == 3)
+		else if(numberToDraw == 3)
 		{	drawThree(g2);	}
-		if(numberToDraw >= 4)
+		else if(numberToDraw == 4)
 		{	drawFour(g2);	}
+		else if(numberToDraw >= 5)
+		{	drawFive(g2);	}
 	}
 	private static void drawOne(Graphics2D g2)
 	{
@@ -95,5 +97,35 @@ public class Marble
 		g2.fill(marble4);
 		g2.setColor(Color.BLACK);
 		g2.draw(marble4);
+	}
+	private static void drawFive(Graphics2D g2)
+	{
+		int x = (pitWidth/2) - ((width + (width / 2)) / 2);
+		int y = (pitHeight/2) - ((height + (height / 2)) / 2);
+		Ellipse2D.Double marble1 = new Ellipse2D.Double(x, y, width, height);
+		Ellipse2D.Double marble2 = new Ellipse2D.Double(x + width / 2, y, width, height);
+		Ellipse2D.Double marble3 = new Ellipse2D.Double(x - width / 2, y + height / 2, width, height);
+		Ellipse2D.Double marble4 = new Ellipse2D.Double(x + width / 2, y + height / 2, width, height);
+		Ellipse2D.Double marble5 = new Ellipse2D.Double(x + width, y + height / 2, width, height);
+		g2.setColor(Color.RED);
+		g2.fill(marble1);
+		g2.setColor(Color.BLACK);
+		g2.draw(marble1);
+		g2.setColor(Color.RED);
+		g2.fill(marble2);
+		g2.setColor(Color.BLACK);
+		g2.draw(marble2);
+		g2.setColor(Color.RED);
+		g2.fill(marble3);
+		g2.setColor(Color.BLACK);
+		g2.draw(marble3);
+		g2.setColor(Color.RED);
+		g2.fill(marble4);
+		g2.setColor(Color.BLACK);
+		g2.draw(marble4);
+		g2.setColor(Color.RED);
+		g2.fill(marble5);
+		g2.setColor(Color.BLACK);
+		g2.draw(marble5);
 	}
 }

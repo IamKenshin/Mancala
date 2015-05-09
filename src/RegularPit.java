@@ -22,7 +22,6 @@ public class RegularPit extends Pit
 		pitShape = new Ellipse2D.Double(0, 0, pitWidth, pitHeight);
 	}
 
-
 	@Override
 	public void stateChanged(ChangeEvent e)
 	{
@@ -34,7 +33,7 @@ public class RegularPit extends Pit
 	{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.draw(new Ellipse2D.Double(x, y, pitWidth, pitHeight));
-		Marble.draw(g2, model.getNumberOfMarblesInPit(pitNumber));
+		Marble.draw(g2, model.getNumberOfMarblesInPit(this));
 	}
 
 	@Override

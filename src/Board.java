@@ -80,22 +80,40 @@ public class Board extends JFrame
 		for(int i = 0; i < numberOfPits; i++)
 		{
 			JLabel label = new JLabel("B" + (numberOfPits-i));
+			final RegularPit pit = new RegularPit(model, label, i);
+			label.setIcon(pit);
+			model.attach(pit);
+			JLabel marbleCount = new JLabel("" + model.getNumberOfMarblesInPit(pit));
 			label.addMouseListener(new MouseAdapter()
 			{
 				@Override
 				public void mouseClicked(MouseEvent e)
 				{
-					if(!model.getPlayer())
+					boolean player = model.getPlayer();
+					if(player == Model.PLAYER_B)
 					{
-						//do Something
+						Pit cursor = pit;
+						MancalaPit opponentsMancalaPit = model.getOpponentsMancalaPit(player);
+						MancalaPit playersMancalaPit = model.getPlayersMancalaPit(player);
+						//pick up the marbles in the current pit.
+						int marblesInHand = model.getNumberOfMarblesInPit(pit);
+						model.removeAllMarbles(pit);
+						
+						//put one in each pit until there are none left in your hand.
+						while(marblesInHand > 0)
+						{
+							cursor = model.nextPit(cursor);
+							if(!cursor.equals(opponentsMancalaPit))
+							{
+								model.addOneMarble(cursor);
+								marblesInHand--;
+							}
+						}
+						if(!cursor.equals(playersMancalaPit))
+							model.setPlayer();
 					}
 				}
 			});
-
-			RegularPit pit = new RegularPit(model, label, i);
-			label.setIcon(pit);
-			model.attach(pit);
-			JLabel marbleCount = new JLabel("" + model.getNumberOfMarblesInPit(pit.getPitNumber()));
 			northPanel.add(label);
 			northPanel.add(marbleCount, BorderLayout.SOUTH); // For some reason all these have 0 value
 		}
@@ -108,21 +126,40 @@ public class Board extends JFrame
 		for(int i = 0; i < numberOfPits; i++)
 		{
 			JLabel label = new JLabel("A" +(i+1));
+			final RegularPit pit = new RegularPit(model, label, i + 6);
+			label.setIcon(pit);
+			model.attach(pit);
+			JLabel marbleCount = new JLabel("" + model.getNumberOfMarblesInPit(pit));
 			label.addMouseListener(new MouseAdapter()
 			{
 				@Override
 				public void mouseClicked(MouseEvent e)
 				{
-					if(!model.getPlayer())
+					boolean player = model.getPlayer();
+					if(player == Model.PLAYER_A)
 					{
-						//do something
+						Pit cursor = pit;
+						MancalaPit opponentsMancalaPit = model.getOpponentsMancalaPit(player);
+						MancalaPit playersMancalaPit = model.getPlayersMancalaPit(player);
+						//pick up the marbles in the current pit.
+						int marblesInHand = model.getNumberOfMarblesInPit(pit);
+						model.removeAllMarbles(pit);
+						
+						//put one in each pit until there are none left in your hand.
+						while(marblesInHand > 0)
+						{
+							cursor = model.nextPit(cursor);
+							if(!cursor.equals(opponentsMancalaPit))
+							{
+								model.addOneMarble(cursor);
+								marblesInHand--;
+							}
+						}
+						if(!cursor.equals(playersMancalaPit))
+							model.setPlayer();
 					}
 				}
 			});
-			RegularPit pit = new RegularPit(model, label, i + 6);
-			label.setIcon(pit);
-			model.attach(pit);
-			JLabel marbleCount = new JLabel("" + model.getNumberOfMarblesInPit(pit.getPitNumber()));
 			southPanel.add(label);
 			southPanel.add(marbleCount, BorderLayout.NORTH);
 		}

@@ -11,6 +11,8 @@ public class Model
 	private int[] numberOfMarbles;
 	private int initialNumberOfMarbles;
 	private boolean player; // true for player A, false for player B
+	public static boolean PLAYER_A = false;
+	public static boolean PLAYER_B = true;
 	
 	public Model ()
 	{
@@ -34,9 +36,10 @@ public class Model
 	 * @return the number of marbles in the corresponding Pit
 	 * @param whichPitToAccess
 	 */
-	public int getNumberOfMarblesInPit(int whichPitToAccess)
+	public int getNumberOfMarblesInPit(Pit whichPitToAccess)
 	{
-		return numberOfMarbles[whichPitToAccess];
+		int pitNumber = whichPitToAccess.getPitNumber();
+		return numberOfMarbles[pitNumber];
 	}
 	
 	/**
@@ -44,10 +47,11 @@ public class Model
 	 * At the end of this, we need to notify the Pit that the state has changed.
 	 * @param whichPitToRemoveFrom
 	 */
-	public void removeAllMarbles(int whichPitToRemoveFrom)
+	public void removeAllMarbles(Pit whichPitToRemoveFrom)
 	{
-		numberOfMarbles[whichPitToRemoveFrom] = 0;
-		notifyListener(whichPitToRemoveFrom);
+		int pitNumber = whichPitToRemoveFrom.getPitNumber();
+		numberOfMarbles[pitNumber] = 0;
+		notifyListener(pitNumber);
 	}
 	
 	/**
@@ -55,12 +59,42 @@ public class Model
 	 * At the end of this, we need to notify the Pit that the state has changed.
 	 * @param whichPitToAddTo
 	 */
-	public void addOneMarble(int whichPitToAddTo)
+	public void addOneMarble(Pit whichPitToAddTo)
 	{
-		numberOfMarbles[whichPitToAddTo]++;
-		notifyListener(whichPitToAddTo);
+		int pitNumber = whichPitToAddTo.getPitNumber();
+		numberOfMarbles[pitNumber]++;
+		notifyListener(pitNumber);
 	}
-	
+	public Pit nextPit(Pit currentPit)
+	{
+		int currentPitNumber = currentPit.getPitNumber();
+		Pit nextPit = null;
+		if(currentPitNumber >= 6 && currentPitNumber <= 11)
+			nextPit = pits[++currentPitNumber];
+		else if(currentPitNumber >= 1 && currentPitNumber <= 5)
+			nextPit = pits[--currentPitNumber];
+		else if(currentPitNumber == 0)
+			nextPit = pits[13];
+		else if(currentPitNumber == 12)
+			nextPit = pits[5];
+		else if(currentPitNumber == 13)
+			nextPit = pits[6];
+		return nextPit;
+	}
+	public MancalaPit getOpponentsMancalaPit(boolean currentPlayer)
+	{
+		if(currentPlayer == PLAYER_A)
+			return (MancalaPit) pits[13];
+		else
+			return (MancalaPit) pits[12];
+	}
+	public MancalaPit getPlayersMancalaPit(boolean currentPlayer)
+	{
+		if(currentPlayer == PLAYER_A)
+			return (MancalaPit) pits[12];
+		else
+			return (MancalaPit) pits[13];
+	}
 	/**
 	 * Okay. I'm not sure if this is such a good way to do this, but I know the model needs an attach somewhere.
 	 * @param pitToAttach
