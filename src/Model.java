@@ -10,6 +10,7 @@ public class Model
 	private Pit[] pits;
 	private int[] numberOfMarbles;
 	private int initialNumberOfMarbles;
+	private boolean player; // true for player A, false for player B
 	
 	public Model ()
 	{
@@ -17,6 +18,14 @@ public class Model
 		numberOfMarbles = new int[14];
 	}
 	
+	public boolean getPlayer()
+	{
+		return player;
+	}
+	public void setPlayer()
+	{
+		player = !player;
+	}
 	public void setInitialNumberOfMarbles(int initialNumber)
 	{	initialNumberOfMarbles = initialNumber;	}
 	
