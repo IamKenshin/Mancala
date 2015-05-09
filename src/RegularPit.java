@@ -1,9 +1,5 @@
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import javax.swing.JLabel;
-import javax.swing.event.ChangeEvent;
 
 /**
  * The purpose of this class is to describe what a RegularPit looks like, and to set up the controller.

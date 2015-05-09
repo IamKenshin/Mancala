@@ -30,14 +30,12 @@ public abstract class Pit implements Icon, ChangeListener
 		g2.draw(new Ellipse2D.Double(x, y, pitWidth, pitHeight));
 		Marble.draw(g2, model.getNumberOfMarblesInPit(this));
 	}
-	
 
 	public void stateChanged(ChangeEvent e)
 	{
 		parent.repaint();
 		marbles.setText(""+ model.getNumberOfMarblesInPit(this));
 	}
-
 
 	public int getIconWidth()
 	{	return pitWidth + 1;	}
