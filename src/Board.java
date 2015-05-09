@@ -16,7 +16,7 @@ public class Board extends JFrame
 	 */
 	public Board()
 	{
-		int numberOfPits = 6;
+		int numberOfPits = 6; // this is just in case anyone wants to change the number of pits later.
 		//We might want to think about using a null layout and manually setting the location for each pit.
 		//However, idk how the marbles would work.  Maybe create a JPanel for each pit and add a marble to it.
 		
