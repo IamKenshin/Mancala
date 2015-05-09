@@ -12,10 +12,11 @@ import javax.swing.event.ChangeEvent;
  */
 public class RegularPit extends Pit
 {
-	public RegularPit(Model m, JLabel newParent, int pit)
+	public RegularPit(Model m, JLabel newParent, JLabel marbleCount, int pit)
 	{
 		model = m;
 		parent = newParent;
+		marbles = marbleCount;
 		pitNumber = pit;
 		pitWidth = 60;
 		pitHeight = 50;
@@ -26,6 +27,7 @@ public class RegularPit extends Pit
 	public void stateChanged(ChangeEvent e)
 	{
 		parent.repaint();
+		marbles.setText(""+ model.getNumberOfMarblesInPit(this));
 	}
 
 	@Override

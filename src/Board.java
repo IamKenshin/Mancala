@@ -80,10 +80,11 @@ public class Board extends JFrame
 		for(int i = 0; i < numberOfPits; i++)
 		{
 			JLabel label = new JLabel("B" + (numberOfPits-i));
-			final RegularPit pit = new RegularPit(model, label, i);
+			JLabel marbleCount = new JLabel();
+			final RegularPit pit = new RegularPit(model, label, marbleCount, i);
 			label.setIcon(pit);
 			model.attach(pit);
-			JLabel marbleCount = new JLabel("" + model.getNumberOfMarblesInPit(pit));
+			marbleCount.setText("" + model.getNumberOfMarblesInPit(pit));
 			label.addMouseListener(new MouseAdapter()
 			{
 				@Override
@@ -126,10 +127,12 @@ public class Board extends JFrame
 		for(int i = 0; i < numberOfPits; i++)
 		{
 			JLabel label = new JLabel("A" +(i+1));
-			final RegularPit pit = new RegularPit(model, label, i + 6);
+			JLabel marbleCount = new JLabel();
+			final RegularPit pit = new RegularPit(model, label, marbleCount, i + 6);
+			
 			label.setIcon(pit);
 			model.attach(pit);
-			JLabel marbleCount = new JLabel("" + model.getNumberOfMarblesInPit(pit));
+			marbleCount.setText("" + model.getNumberOfMarblesInPit(pit));
 			label.addMouseListener(new MouseAdapter()
 			{
 				@Override

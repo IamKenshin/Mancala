@@ -13,6 +13,7 @@ public abstract class Pit implements Icon, ChangeListener
 	protected Ellipse2D pitShape;
 	protected int pitWidth, pitHeight;
 	protected JLabel parent;
+	protected JLabel marbles;
 	protected Model model;
 	protected int pitNumber;
 	public abstract void stateChanged(ChangeEvent e);
