@@ -80,6 +80,8 @@ public class Board extends JFrame
 		for(int i = 0; i < numberOfPits; i++)
 		{
 			JLabel label = new JLabel("B" + (numberOfPits-i));
+			
+			JLabel marbleCount = new JLabel("" + model.getNumberOfMarblesInPit(i));
 			label.addMouseListener(new MouseAdapter()
 			{
 				@Override
@@ -97,6 +99,7 @@ public class Board extends JFrame
 			label.setIcon(pit);
 			model.attach(pit);
 			northPanel.add(label);
+			northPanel.add(marbleCount, BorderLayout.SOUTH); // For some reason all these have 0 value
 		}
 		add(northPanel, BorderLayout.NORTH);
 	}
@@ -107,6 +110,7 @@ public class Board extends JFrame
 		for(int i = 0; i < numberOfPits; i++)
 		{
 			JLabel label = new JLabel("A" +(i+1));
+			JLabel marbleCount = new JLabel("" + model.getNumberOfMarblesInPit(i));
 			label.addMouseListener(new MouseAdapter()
 			{
 				@Override
@@ -124,6 +128,7 @@ public class Board extends JFrame
 			label.setIcon(pit);
 			model.attach(pit);
 			southPanel.add(label);
+			southPanel.add(marbleCount, BorderLayout.NORTH);
 		}
 		add(southPanel, BorderLayout.SOUTH);
 	}
