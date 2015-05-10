@@ -17,12 +17,14 @@ public class Model
 	private Color color;
 	public static boolean PLAYER_A = false;
 	public static boolean PLAYER_B = true;
+	private int undoCount;
 	
 	/**Constructor for Model class.  Initializes pits and numberOfMarbles arrays.  Also initializes the lastState array.
 	 * lastState array will be used to undo changes.
 	 * */
 	public Model()
 	{
+		undoCount = 0;
 		pits = new Pit[14];
 		numberOfMarbles = new int[14];
 		lastState = new int[14];
@@ -211,9 +213,15 @@ public class Model
 	 * */
 	public void loadState()
 	{	
+		if(undoCount < 2)
+		{
 		numberOfMarbles = lastState;
 		player = lastPlayer;
 		notifyAllListeners();
+		undoCount++;
+		}
+		else if(undoCount == 2)
+			undoCount = 0;
 	}
 
 	/**This method allows us to follow the rule where if you end on one of your empty pits, you can take all the 
