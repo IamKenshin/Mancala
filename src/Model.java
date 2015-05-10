@@ -235,8 +235,17 @@ public class Model
 		}
 		notifyAllListeners();
 	}
+	/**
+	 * Sets the color for the Marbles
+	 * @param c the Color to draw the Marbles
+	 */
 	public void setColor(Color c)
 	{	color = c;	}
+	
+	/**
+	 * Returns the Color of the Marbles
+	 * @return the Color the Marbles are drawn.
+	 */
 	public Color getColor()
 	{	return color;	}
 }

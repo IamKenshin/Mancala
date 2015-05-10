@@ -24,6 +24,7 @@ public class Marble
 	 * This method actually draws the Marble or group of Marbles. 6 or more Marbles looks the same so they are not too clustered.
 	 * @param g2 The graphics context for drawing.
 	 * @param numberToDraw The number of Marbles to be drawn.
+	 * @param color The color the marbles are.
 	 */
 	public static void draw(Graphics2D g2, int numberToDraw, Color color)
 	{
@@ -44,6 +45,7 @@ public class Marble
 	/**
 	 * Describes the exact steps to draw one Marble
 	 * @param g2 The graphics context for drawing
+	 * @param color The color the marbles are.
 	 */
 	private static void drawOne(Graphics2D g2, Color color)
 	{
@@ -59,6 +61,7 @@ public class Marble
 	/**
 	 * Describes the exact steps to draw two Marbles
 	 * @param g2 The graphics context for drawing
+	 * @param color The color the marbles are.
 	 */
 	private static void drawTwo(Graphics2D g2, Color color)
 	{
@@ -79,6 +82,7 @@ public class Marble
 	/**
 	 * Describes the exact steps to draw three Marbles
 	 * @param g2 The graphics context for drawing
+	 * @param color The color the marbles are.
 	 */
 	private static void drawThree(Graphics2D g2, Color color)
 	{
@@ -104,6 +108,7 @@ public class Marble
 	/**
 	 * Describes the exact steps to draw four Marbles
 	 * @param g2 The graphics context for drawing
+	 * @param color The color the marbles are.
 	 */
 	private static void drawFour(Graphics2D g2, Color color)
 	{
@@ -134,6 +139,7 @@ public class Marble
 	/**
 	 * Describes the exact steps to draw five Marbles
 	 * @param g2 The graphics context for drawing
+	 * @param color The color the marbles are.
 	 */
 	private static void drawFive(Graphics2D g2, Color color)
 	{
@@ -169,6 +175,7 @@ public class Marble
 	/**
 	 * Describes the exact steps to draw six or more Marbles
 	 * @param g2 The graphics context for drawing
+	 * @param color The color the marbles are.
 	 */
 	private static void drawSix(Graphics2D g2, Color color)
 	{
