@@ -49,14 +49,22 @@ public class Model
 		notifyListener(pitNumber);
 	}*/
 	
+	/**getPlayer() returns the current player.
+	 * @return player boolean that is true if player A, false if player B
+	 * */
 	public boolean getPlayer()
 	{
 		return player;
 	}
+	
+	/**setPlayer() Mutator that changes which player has an active turn.
+	 * */
 	public void setPlayer()
 	{
 		player = !player;
 	}
+	/**setInitialNumberOfMarbles(int initialNumber) sets how many marbles are in each RegularPit at the start of the game
+	 * */
 	public void setInitialNumberOfMarbles(int initialNumber)
 	{	initialNumberOfMarbles = initialNumber;	}
 	

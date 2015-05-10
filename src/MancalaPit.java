@@ -8,6 +8,8 @@ import javax.swing.JLabel;
  */
 public class MancalaPit extends Pit
 {
+	/**Constructor for a MancalaPit.  Ties it to the Model m, gives it JLabels for parent and counter, and a specific pit
+	 * */
 	public MancalaPit(Model m, JLabel newParent, JLabel marbleCount, int pit)
 	{
 		model = m;
@@ -19,6 +21,9 @@ public class MancalaPit extends Pit
 		pitShape = new Ellipse2D.Double(0, 0, pitWidth, pitHeight);
 	}
 	@Override
+	/**This method returns false to indicate this pit is a MancalaPit
+	 * @return false
+	 * */
 	public boolean isRegularPit()
 	{	return false;	}
 }

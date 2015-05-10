@@ -10,7 +10,9 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
+/**This abstract class is used to factor all common fields and methods from the MancalaPit and RegularPit.
+ * @author Team Dragon
+ * */
 public abstract class Pit implements Icon, ChangeListener
 {
 	//instead of doing protected variables, these should all be private with getters and setters. definitely low priority.
@@ -22,9 +24,24 @@ public abstract class Pit implements Icon, ChangeListener
 	protected Model model;
 	protected int pitNumber;
 	
+	/**getPitNumber() Retrieves the currentpitNumber.
+	 * @return pitNumber The pitNumber.
+	 * */
 	public int getPitNumber()
 	{	return pitNumber;	}
+	/**isRegularPit() Abstract method that will determine if a pit is
+	 * a regular or mancala pit.
+	 * @return boolean
+	 * */
 	public abstract boolean isRegularPit();
+	
+	/**paintIcon is a method that will draw the pit.  Will also draw Marble objects
+	 * in the pits.
+	 * @param c Component to be drawn
+	 * @param g Graphics object
+	 * @param x x-coordinate of icon
+	 * @param y y-coordinate of icon
+	 * */
 	public void paintIcon(Component c, Graphics g, int x, int y)
 	{
 		Graphics2D g2 = (Graphics2D) g;
@@ -32,15 +49,24 @@ public abstract class Pit implements Icon, ChangeListener
 		Marble.draw(g2, model.getNumberOfMarblesInPit(this));
 	}
 
+	/**Notifies the view that the state has changed so it can repaint itself 
+	 * in order to convey the correct model.
+	 * */
 	public void stateChanged(ChangeEvent e)
 	{
 		parent.repaint();
 		counter.setText(""+ model.getNumberOfMarblesInPit(this));
 	}
 
+	/**returns the width of the icon + 1
+	 * @return pitWidth + 1
+	 * */
 	public int getIconWidth()
 	{	return pitWidth + 1;	}
 
+	/**returns the height of the icon + 1
+	 * @return pitHeight + 1
+	 * */
 	public int getIconHeight()
 	{	return pitHeight + 1;	}
 }
