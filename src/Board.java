@@ -23,6 +23,9 @@ public class Board extends JFrame
 	JLabel winnerLabel;
 	JPanel centerPanel;
 	private static int numberOfPits = 6;
+	/**Constructor for the Board.  This is a JFrame and acts as the container for all the views and controllers.
+	 * @param newmodel the Model object that Board communicates with.
+	 * */
 	public Board(Model newModel)
 	{
 		model = newModel;
@@ -35,6 +38,8 @@ public class Board extends JFrame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
+	/**This method initializes the start menu.  It allows you to choose the game mode of either 3 or 4 marbles.
+	 * */
 	private void initializeCenter()
 	{
 		JButton b1 = new JButton(" 3 ");
@@ -67,7 +72,9 @@ public class Board extends JFrame
 		});
 		centerPanel.add(jp);
 	}
-	
+	/**This method creates the game board by calling all the methods that are responsible
+	 * for setting up the North, South, East, and West sides of the board.
+	 * */
 	private void createBoard()
 	{
 		initializeNorth();
@@ -88,6 +95,7 @@ public class Board extends JFrame
 		centerPanel.add(winnerLabel);
 		add(centerPanel);
 	}
+	/**Responsible for setting up the North side of the board.  This will be Player B's pits.*/
 	private void initializeNorth()
 	{
 		JPanel northPanel = new JPanel();
@@ -146,7 +154,7 @@ public class Board extends JFrame
 		}
 		add(northPanel, BorderLayout.NORTH);
 	}
-	
+	/**Responsible for setting up the South side of the board.  This will be Player A's pits.*/
 	private void initializeSouth()
 	{
 		JPanel southPanel = new JPanel();
@@ -205,7 +213,7 @@ public class Board extends JFrame
 		}
 		add(southPanel, BorderLayout.SOUTH);
 	}
-	
+	/**Responsible for setting up the East side of the board.  This will contain Player A's Mancala Pit.*/
 	private void initializeEast()
 	{
 		JPanel eastPanel = new JPanel();
@@ -219,6 +227,7 @@ public class Board extends JFrame
 		eastPanel.add(eastLabel);
 		add(eastPanel, BorderLayout.EAST);
 	}
+	/**Responsible for setting up the West side of the board.  This will contain Player B's Mancala Pit.*/
 	private void initializeWest()
 	{
 		JPanel westPanel = new JPanel();
@@ -232,6 +241,9 @@ public class Board extends JFrame
 		westPanel.add(westLabel);
 		add(westPanel, BorderLayout.WEST);
 	}
+	/**This method allows the user to choose which board version they want to play on.  They have the option 
+	 * of playing with either red or green marbles.
+	 * */
 	private void showSelectColor()
 	{
 		JButton b1 = new JButton(" Red ");
