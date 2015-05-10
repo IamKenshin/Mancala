@@ -15,10 +15,10 @@ public abstract class Pit implements Icon, ChangeListener
 {
 	//instead of doing protected variables, these should all be private with getters and setters. definitely low priority.
 	protected Ellipse2D pitShape;
-	protected int pitWidth, pitHeight;
+	protected int pitWidth;
+	protected int pitHeight;
 	protected JLabel parent;
-	protected JLabel marbles;
-	protected JLabel winner;
+	protected JLabel counter;
 	protected Model model;
 	protected int pitNumber;
 	
@@ -35,7 +35,7 @@ public abstract class Pit implements Icon, ChangeListener
 	public void stateChanged(ChangeEvent e)
 	{
 		parent.repaint();
-		marbles.setText(""+ model.getNumberOfMarblesInPit(this));
+		counter.setText(""+ model.getNumberOfMarblesInPit(this));
 	}
 
 

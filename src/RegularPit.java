@@ -12,8 +12,8 @@ public class RegularPit extends Pit
 	{
 		model = m;
 		parent = newParent;
-		marbles = marbleCount;
 		pitNumber = pit;
+		counter = marbleCount;
 		pitWidth = 60;
 		pitHeight = 50;
 		pitShape = new Ellipse2D.Double(0, 0, pitWidth, pitHeight);

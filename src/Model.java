@@ -114,7 +114,7 @@ public class Model
 	}
 	
 	
-	public String checkForWinner2()
+	public String checkForWinner()
 	{
 		if(endOfGame())
 		{
@@ -152,26 +152,6 @@ public class Model
 		if(count == 0)
 			return true;
 		return false;
-	}
-	
-	public int endOfGame1(){
-		int i = 0;
-		int count = 0;
-		while ( i < 6){
-			count += numberOfMarbles[i];
-			i++;
-		}
-		return count;
-	}
-
-	public int endOfGame2(){
-		int i = 6;
-		int count = 0;
-		while ( i < 12){
-			count += numberOfMarbles[i];
-			i++;
-		}
-		return count;
 	}
 
 	private void notifyListener(int listener)

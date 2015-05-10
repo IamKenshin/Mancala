@@ -130,7 +130,7 @@ public class Board extends JFrame
 						}
 						if(!cursor.equals(playersMancalaPit))
 							model.setPlayer();
-						winnerLabel.setText(model.checkForWinner2());
+						winnerLabel.setText(model.checkForWinner());
 					}
 				}
 			});
@@ -183,7 +183,7 @@ public class Board extends JFrame
 						}
 						if(!cursor.equals(playersMancalaPit))
 							model.setPlayer();
-						winnerLabel.setText(model.checkForWinner2());
+						winnerLabel.setText(model.checkForWinner());
 					}
 				}
 			});
@@ -198,13 +198,11 @@ public class Board extends JFrame
 		JPanel eastPanel = new JPanel();
 		JLabel eastLabel = new JLabel("A");
 		JLabel marbleCount = new JLabel();
-		JLabel winnerLabel = new JLabel();
-		MancalaPit eastMancalaPit = new MancalaPit(model, eastLabel, marbleCount, winnerLabel, 12);
+		MancalaPit eastMancalaPit = new MancalaPit(model, eastLabel, marbleCount, 12);
 		eastLabel.setIcon(eastMancalaPit);
 		model.attach(eastMancalaPit);
 		marbleCount.setText("" + model.getNumberOfMarblesInPit(eastMancalaPit));
 		eastPanel.add(marbleCount, BorderLayout.WEST);
-		eastPanel.add(winnerLabel);
 		eastPanel.add(eastLabel);
 		add(eastPanel, BorderLayout.EAST);
 	}
@@ -213,13 +211,11 @@ public class Board extends JFrame
 		JPanel westPanel = new JPanel();
 		JLabel westLabel = new JLabel("B");
 		JLabel marbleCount = new JLabel();
-		JLabel winnerLabel = new JLabel();
-		MancalaPit westMancalaPit = new MancalaPit(model, westLabel, marbleCount, winnerLabel, 13);
+		MancalaPit westMancalaPit = new MancalaPit(model, westLabel, marbleCount, 13);
 		westLabel.setIcon(westMancalaPit);
 		model.attach(westMancalaPit);
 		marbleCount.setText("" + model.getNumberOfMarblesInPit(westMancalaPit));
 		westPanel.add(marbleCount, BorderLayout.EAST);
-		westPanel.add(winnerLabel);
 		westPanel.add(westLabel);
 		add(westPanel, BorderLayout.WEST);
 	}
