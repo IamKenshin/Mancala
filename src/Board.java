@@ -1,9 +1,9 @@
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,10 +20,14 @@ public class Board extends JFrame
 	 */
 	Model model;
 	JLabel winnerLabel;
+	JPanel centerPanel;
 	private static int numberOfPits = 6;
 	public Board(Model newModel)
 	{
 		model = newModel;
+		centerPanel = new JPanel();
+		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+		add(centerPanel);
 		initializeCenter();
 		
 		this.setSize(800, 400);
@@ -35,7 +39,7 @@ public class Board extends JFrame
 		JButton b1 = new JButton(" 3 ");
 		JButton b2 = new JButton(" 4 ");
 		JLabel label = new JLabel("Select the number of marbles :" );
-		JPanel jp = new JPanel(new FlowLayout());
+		JPanel jp = new JPanel();
 		jp.add(label);
 		jp.add(b1);
 		jp.add(b2);
@@ -65,7 +69,7 @@ public class Board extends JFrame
 				repaint();
 			}
 		});
-		add(jp, BorderLayout.CENTER);
+		centerPanel.add(jp);
 	}
 	
 	private void createBoard()
@@ -82,7 +86,8 @@ public class Board extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{	model.loadState();	}
 		});
-		JPanel centerPanel = new JPanel();
+		centerPanel = new JPanel();
+		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 		centerPanel.add(undoButton);
 		centerPanel.add(winnerLabel);
 		add(centerPanel);
@@ -135,6 +140,8 @@ public class Board extends JFrame
 							model.setPlayer();
 						}
 						winnerLabel.setText(model.checkForWinner());
+						if(!winnerLabel.getText().equals(""))
+							initializeCenter();
 					}
 				}
 			});
@@ -192,6 +199,8 @@ public class Board extends JFrame
 							model.setPlayer();
 						}
 						winnerLabel.setText(model.checkForWinner());
+						if(!winnerLabel.getText().equals(""))
+							initializeCenter();
 					}
 				}
 			});
