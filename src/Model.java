@@ -28,6 +28,7 @@ public class Model
 		return pits[i];
 	}
 	
+	/*
 	public boolean takeOppositePit(Pit cursor, int start, int end)
 	{
 		for(int i = start; i <= end; i++)
@@ -46,7 +47,7 @@ public class Model
 		int oppositePitNumber = pitIndex;
 		numberOfMarbles[pitNumber] =+ numberOfMarbles[oppositePitNumber] + 1;
 		notifyListener(pitNumber);
-	}
+	}*/
 	
 	public boolean getPlayer()
 	{
@@ -195,6 +196,24 @@ public class Model
 	{	
 		numberOfMarbles = lastState;
 		player = lastPlayer;
+		notifyAllListeners();
+	}
+
+	public void takeFromAcross(Pit emptyPit)
+	{
+		int pitNumber = emptyPit.getPitNumber();
+		if(pitNumber >= 0 && pitNumber < 6)
+		{
+			numberOfMarbles[13] += numberOfMarbles[pitNumber + 6] + 1;
+			removeAllMarbles(pits[pitNumber + 6]);
+			removeAllMarbles(emptyPit);
+		}
+		else if(pitNumber >= 6 && pitNumber < 12)
+		{
+			numberOfMarbles[12] += numberOfMarbles[pitNumber - 6] + 1;
+			removeAllMarbles(pits[pitNumber - 6]);
+			removeAllMarbles(emptyPit);
+		}
 		notifyAllListeners();
 	}
 }

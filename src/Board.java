@@ -128,12 +128,12 @@ public class Board extends JFrame
 								marblesInHand--;
 							}
 						}
-						if(model.takeOppositePit(cursor, 0, 5))
-						{
-							model.addOppositeMarbles(model.getPit(13), cursor.pitNumber + 6);
-						}
 						if(!cursor.equals(playersMancalaPit))
+						{
+							if(model.getNumberOfMarblesInPit(cursor) == 1 && cursor.getPitNumber() < 6 && cursor.getPitNumber() >= 0)
+								model.takeFromAcross(cursor);
 							model.setPlayer();
+						}
 						winnerLabel.setText(model.checkForWinner());
 					}
 				}
@@ -185,12 +185,12 @@ public class Board extends JFrame
 								marblesInHand--;
 							}
 						}
-						if(model.takeOppositePit(cursor, 6, 11))
-						{
-							model.addOppositeMarbles(model.getPit(12), cursor.pitNumber - 6);
-						}
 						if(!cursor.equals(playersMancalaPit))
+						{
+							if(model.getNumberOfMarblesInPit(cursor) == 1 && cursor.getPitNumber() < 12 && cursor.getPitNumber() >= 6)
+								model.takeFromAcross(cursor);
 							model.setPlayer();
+						}
 						winnerLabel.setText(model.checkForWinner());
 					}
 				}

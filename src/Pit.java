@@ -38,7 +38,6 @@ public abstract class Pit implements Icon, ChangeListener
 		counter.setText(""+ model.getNumberOfMarblesInPit(this));
 	}
 
-
 	public int getIconWidth()
 	{	return pitWidth + 1;	}
 
