@@ -113,38 +113,6 @@ public class Model
 			numberOfMarbles[pitNumber] = 0;
 	}
 	
-	public String checkForWinner()
-	{
-		int count = 0;
-		
-		if ( endOfGame1() == 0 ||  endOfGame2() == 0)
-		{
-			if(endOfGame1() == 0)
-			{
-				for(int i = 6; i<12; i++)
-				{
-					count+= numberOfMarbles[i];
-				}
-				numberOfMarbles[12] += count;
-			}
-			else if(endOfGame2() == 0)
-			{
-				for(int i = 0; i < 6; i++)
-				{
-					count+= numberOfMarbles[i];
-				}
-				numberOfMarbles[13] += count;
-			}
-			
-			if(numberOfMarbles[12] > numberOfMarbles[13])
-			{
-				return "Winner: Player A";
-			}	
-			else
-				return "Winner: Player B";
-		}
-		return "";
-	}
 	
 	public String checkForWinner2()
 	{
