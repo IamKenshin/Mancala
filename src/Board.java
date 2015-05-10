@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -48,12 +49,9 @@ public class Board extends JFrame
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
-			{	
+			{
 				model.setInitialNumberOfMarbles(3);
-				getContentPane().removeAll();
-				createBoard();
-				validate();
-				repaint();
+				showSelectColor();
 			}
 		});
 		
@@ -64,9 +62,7 @@ public class Board extends JFrame
 			{	
 				model.setInitialNumberOfMarbles(4);
 				getContentPane().removeAll();
-				createBoard();
-				validate();
-				repaint();
+				showSelectColor();
 			}
 		});
 		centerPanel.add(jp);
@@ -235,5 +231,45 @@ public class Board extends JFrame
 		westPanel.add(marbleCount, BorderLayout.EAST);
 		westPanel.add(westLabel);
 		add(westPanel, BorderLayout.WEST);
+	}
+	private void showSelectColor()
+	{
+		JButton b1 = new JButton(" Red ");
+		JButton b2 = new JButton(" Green ");
+		JLabel label = new JLabel("Select the color of the marbles :" );
+		JPanel jp = new JPanel();
+		jp.add(label);
+		jp.add(b1);
+		jp.add(b2);
+		
+		b1.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{	
+				model.setColor(Color.RED);
+				getContentPane().removeAll();
+				createBoard();
+				validate();
+				repaint();
+			}
+		});
+		
+		b2.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{	
+				model.setColor(Color.GREEN);
+				getContentPane().removeAll();
+				createBoard();
+				validate();
+				repaint();
+			}
+		});
+		getContentPane().removeAll();
+		add(jp);
+		validate();
+		repaint();
 	}
 }

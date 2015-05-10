@@ -1,3 +1,4 @@
+import java.awt.Color;
 import javax.swing.event.ChangeEvent;
 
 /**
@@ -13,13 +14,14 @@ public class Model
 	private int initialNumberOfMarbles;
 	private boolean player; 
 	private boolean lastPlayer;
+	private Color color;
 	public static boolean PLAYER_A = false;
 	public static boolean PLAYER_B = true;
 	
 	/**Constructor for Model class.  Initializes pits and numberOfMarbles arrays.  Also initializes the lastState array.
 	 * lastState array will be used to undo changes.
 	 * */
-	public Model ()
+	public Model()
 	{
 		pits = new Pit[14];
 		numberOfMarbles = new int[14];
@@ -233,4 +235,8 @@ public class Model
 		}
 		notifyAllListeners();
 	}
+	public void setColor(Color c)
+	{	color = c;	}
+	public Color getColor()
+	{	return color;	}
 }

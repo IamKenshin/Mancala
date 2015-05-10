@@ -1,11 +1,7 @@
-// here is a random comment. 
-// Random comment = new Random(); 
-//I fell in the pit.
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
-
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
@@ -15,7 +11,6 @@ import javax.swing.event.ChangeListener;
  * */
 public abstract class Pit implements Icon, ChangeListener
 {
-	//instead of doing protected variables, these should all be private with getters and setters. definitely low priority.
 	protected Ellipse2D pitShape;
 	protected int pitWidth;
 	protected int pitHeight;
@@ -29,6 +24,7 @@ public abstract class Pit implements Icon, ChangeListener
 	 * */
 	public int getPitNumber()
 	{	return pitNumber;	}
+	
 	/**isRegularPit() Abstract method that will determine if a pit is
 	 * a regular or mancala pit.
 	 * @return boolean
@@ -46,7 +42,7 @@ public abstract class Pit implements Icon, ChangeListener
 	{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.draw(new Ellipse2D.Double(x, y, pitWidth, pitHeight));
-		Marble.draw(g2, model.getNumberOfMarblesInPit(this));
+		Marble.draw(g2, model.getNumberOfMarblesInPit(this), model.getColor());
 	}
 
 	/**Notifies the view that the state has changed so it can repaint itself 
