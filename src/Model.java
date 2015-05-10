@@ -155,7 +155,7 @@ public class Model
 				numberOfMarbles[13] += numberOfMarbles[i];
 				removeAllMarbles(pits[i]);
 			}
-			for(int i = 6; i < 11; i++)
+			for(int i = 6; i < 12; i++)
 			{
 				numberOfMarbles[12] += numberOfMarbles[i];
 				removeAllMarbles(pits[i]);
