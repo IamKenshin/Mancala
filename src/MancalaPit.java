@@ -30,11 +30,6 @@ public class MancalaPit extends Pit
 	{
 		parent.repaint();
 		marbles.setText(""+ model.getNumberOfMarblesInPit(this));
-		winner.setText("" + model.checkForWinner());
-		//int a = endOfGmae();
-		
-		 
-		
-		
+		//winner.setText("" + model.checkForWinner());
 	}
 }

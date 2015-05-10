@@ -19,6 +19,7 @@ public class Board extends JFrame
 	 * Constructor. Add all the pits to the panel.
 	 */
 	Model model;
+	JLabel winnerLabel;
 	private static int numberOfPits = 6;
 	public Board(Model newModel)
 	{
@@ -73,6 +74,18 @@ public class Board extends JFrame
 		initializeSouth();
 		initializeEast();
 		initializeWest();
+		JButton undoButton = new JButton("Undo");
+		winnerLabel = new JLabel();
+		undoButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{	model.loadState();	}
+		});
+		JPanel centerPanel = new JPanel();
+		centerPanel.add(undoButton);
+		centerPanel.add(winnerLabel);
+		add(centerPanel);
 	}
 	private void initializeNorth()
 	{
@@ -94,10 +107,15 @@ public class Board extends JFrame
 					if(player == Model.PLAYER_B)
 					{
 						Pit cursor = pit;
+						model.saveState();
 						MancalaPit opponentsMancalaPit = model.getOpponentsMancalaPit(player);
 						MancalaPit playersMancalaPit = model.getPlayersMancalaPit(player);
+						
 						//pick up the marbles in the current pit.
 						int marblesInHand = model.getNumberOfMarblesInPit(pit);
+						if(marblesInHand == 0)
+							return;
+						model.saveState();
 						model.removeAllMarbles(pit);
 						
 						//put one in each pit until there are none left in your hand.
@@ -112,6 +130,7 @@ public class Board extends JFrame
 						}
 						if(!cursor.equals(playersMancalaPit))
 							model.setPlayer();
+						winnerLabel.setText(model.checkForWinner2());
 					}
 				}
 			});
@@ -144,8 +163,12 @@ public class Board extends JFrame
 						Pit cursor = pit;
 						MancalaPit opponentsMancalaPit = model.getOpponentsMancalaPit(player);
 						MancalaPit playersMancalaPit = model.getPlayersMancalaPit(player);
+						
 						//pick up the marbles in the current pit.
 						int marblesInHand = model.getNumberOfMarblesInPit(pit);
+						if(marblesInHand == 0)
+							return;
+						model.saveState();
 						model.removeAllMarbles(pit);
 						
 						//put one in each pit until there are none left in your hand.
@@ -160,6 +183,7 @@ public class Board extends JFrame
 						}
 						if(!cursor.equals(playersMancalaPit))
 							model.setPlayer();
+						winnerLabel.setText(model.checkForWinner2());
 					}
 				}
 			});

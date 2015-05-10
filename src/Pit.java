@@ -32,16 +32,10 @@ public abstract class Pit implements Icon, ChangeListener
 		Marble.draw(g2, model.getNumberOfMarblesInPit(this));
 	}
 
-public void stateChanged(ChangeEvent e)
+	public void stateChanged(ChangeEvent e)
 	{
 		parent.repaint();
 		marbles.setText(""+ model.getNumberOfMarblesInPit(this));
-		//winner.setText("" + model.checkForWinner());
-		//int a = endOfGmae();
-		
-		 
-		
-		
 	}
 
 

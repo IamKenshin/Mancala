@@ -9,8 +9,10 @@ public class Model
 {
 	private Pit[] pits;
 	private int[] numberOfMarbles;
+	private int[] lastState;
 	private int initialNumberOfMarbles;
-	private boolean player; // true for player A, false for player B
+	private boolean player; 
+	private boolean lastPlayer;
 	public static boolean PLAYER_A = false;
 	public static boolean PLAYER_B = true;
 	
@@ -18,6 +20,7 @@ public class Model
 	{
 		pits = new Pit[14];
 		numberOfMarbles = new int[14];
+		lastState = new int[14];
 	}
 	
 	public boolean getPlayer()
@@ -141,7 +144,46 @@ public class Model
 				return "Winner: Player B";
 		}
 		return "";
-		
+	}
+	
+	public String checkForWinner2()
+	{
+		if(endOfGame())
+		{
+			for(int i = 0; i < 6; i++)
+			{
+				numberOfMarbles[13] += numberOfMarbles[i];
+				removeAllMarbles(pits[i]);
+			}
+			for(int i = 6; i < 11; i++)
+			{
+				numberOfMarbles[12] += numberOfMarbles[i];
+				removeAllMarbles(pits[i]);
+			}
+			notifyAllListeners();
+			if(numberOfMarbles[12] > numberOfMarbles[13])
+				return "Winner: Player A";
+			else if(numberOfMarbles[12] < numberOfMarbles[13])
+				return "Winner: Player B";
+			else
+				return "Draw!";
+		}
+		return "";
+	}
+	
+	private boolean endOfGame()
+	{
+		int count = 0;
+		for(int i = 0; i < 6; i++)
+			count += numberOfMarbles[i];
+		if(count == 0)
+			return true;
+		count = 0;
+		for(int i = 6; i < 12; i++)
+			count += numberOfMarbles[i];
+		if(count == 0)
+			return true;
+		return false;
 	}
 	
 	public int endOfGame1(){
@@ -165,7 +207,21 @@ public class Model
 	}
 
 	private void notifyListener(int listener)
+	{	pits[listener].stateChanged(new ChangeEvent(this));	}
+	private void notifyAllListeners()
 	{
-		pits[listener].stateChanged(new ChangeEvent(this));
+		for(Pit pit : pits)
+			pit.stateChanged(new ChangeEvent(this));
+	}
+	public void saveState()
+	{	
+		lastState = numberOfMarbles.clone();
+		lastPlayer = player;
+	}
+	public void loadState()
+	{	
+		numberOfMarbles = lastState;
+		player = lastPlayer;
+		notifyAllListeners();
 	}
 }
