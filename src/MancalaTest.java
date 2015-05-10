@@ -1,6 +1,7 @@
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
+/**Tester class for the Mancala Game.
+ * @author Team Dragon*/
 public class MancalaTest
 {
 	public static void main(String[] args)
