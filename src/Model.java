@@ -23,6 +23,31 @@ public class Model
 		lastState = new int[14];
 	}
 	
+	public Pit getPit(int i)
+	{
+		return pits[i];
+	}
+	
+	public boolean takeOppositePit(Pit cursor, int start, int end)
+	{
+		for(int i = start; i <= end; i++)
+		{
+			if(cursor.equals(pits[i]) && getNumberOfMarblesInPit(pits[i]) == 0)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void addOppositeMarbles(Pit aMancalaPit, int pitIndex)
+	{
+		int pitNumber = aMancalaPit.getPitNumber();
+		int oppositePitNumber = pitIndex;
+		numberOfMarbles[pitNumber] =+ numberOfMarbles[oppositePitNumber] + 1;
+		notifyListener(pitNumber);
+	}
+	
 	public boolean getPlayer()
 	{
 		return player;

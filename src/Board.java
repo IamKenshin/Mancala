@@ -128,6 +128,10 @@ public class Board extends JFrame
 								marblesInHand--;
 							}
 						}
+						if(model.takeOppositePit(cursor, 0, 5))
+						{
+							model.addOppositeMarbles(model.getPit(13), cursor.pitNumber + 6);
+						}
 						if(!cursor.equals(playersMancalaPit))
 							model.setPlayer();
 						winnerLabel.setText(model.checkForWinner());
@@ -180,6 +184,10 @@ public class Board extends JFrame
 								model.addOneMarble(cursor);
 								marblesInHand--;
 							}
+						}
+						if(model.takeOppositePit(cursor, 6, 11))
+						{
+							model.addOppositeMarbles(model.getPit(12), cursor.pitNumber - 6);
 						}
 						if(!cursor.equals(playersMancalaPit))
 							model.setPlayer();
