@@ -16,6 +16,9 @@ public class Model
 	public static boolean PLAYER_A = false;
 	public static boolean PLAYER_B = true;
 	
+	/**Constructor for Model class.  Initializes pits and numberOfMarbles arrays.  Also initializes the lastState array.
+	 * lastState array will be used to undo changes.
+	 * */
 	public Model ()
 	{
 		pits = new Pit[14];
@@ -23,31 +26,6 @@ public class Model
 		lastState = new int[14];
 	}
 	
-	public Pit getPit(int i)
-	{
-		return pits[i];
-	}
-	
-	/*
-	public boolean takeOppositePit(Pit cursor, int start, int end)
-	{
-		for(int i = start; i <= end; i++)
-		{
-			if(cursor.equals(pits[i]) && getNumberOfMarblesInPit(pits[i]) == 0)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public void addOppositeMarbles(Pit aMancalaPit, int pitIndex)
-	{
-		int pitNumber = aMancalaPit.getPitNumber();
-		int oppositePitNumber = pitIndex;
-		numberOfMarbles[pitNumber] =+ numberOfMarbles[oppositePitNumber] + 1;
-		notifyListener(pitNumber);
-	}*/
 	
 	/**getPlayer() returns the current player.
 	 * @return player boolean that is true if player A, false if player B
@@ -102,6 +80,9 @@ public class Model
 		numberOfMarbles[pitNumber]++;
 		notifyListener(pitNumber);
 	}
+	/**Changes the current pit to the next pit in the array.  When a player adds a marble to the pit, if he still has marbles left he will advance to the next
+	 * pit and deposit another marble.
+	 * */
 	public Pit nextPit(Pit currentPit)
 	{
 		int currentPitNumber = currentPit.getPitNumber();
@@ -118,6 +99,10 @@ public class Model
 			nextPit = pits[6];
 		return nextPit;
 	}
+	/**Method will get the opposing player's MancalaPit
+	 * @param currentPlayer Either Player A or B
+	 * @return MancalaPit either the East or West mancala pit
+	 * */
 	public MancalaPit getOpponentsMancalaPit(boolean currentPlayer)
 	{
 		if(currentPlayer == PLAYER_A)
@@ -125,6 +110,10 @@ public class Model
 		else
 			return (MancalaPit) pits[12];
 	}
+	/**Method will get the player's MancalaPit
+	 * @param currentPlayer Either Player A or B
+	 * @return MancalaPit either the East or West mancala pit
+	 * */
 	public MancalaPit getPlayersMancalaPit(boolean currentPlayer)
 	{
 		if(currentPlayer == PLAYER_A)
@@ -147,7 +136,9 @@ public class Model
 			numberOfMarbles[pitNumber] = 0;
 	}
 	
-	
+	/**This will check to see if a winner has been decided.
+	 * @return String outcome of the game
+	 * */
 	public String checkForWinner()
 	{
 		if(endOfGame())
@@ -173,6 +164,10 @@ public class Model
 		return "";
 	}
 	
+	/**this method is a helper method for checkForWinner().  It returns a boolean to be used
+	 * in checkForWinner().
+	 * @return boolean true if game is over, false otherwise
+	 * */
 	private boolean endOfGame()
 	{
 		int count = 0;
@@ -188,18 +183,29 @@ public class Model
 		return false;
 	}
 
+	/**Fires the ChangeEvent to let a pit know that the state has changed.
+	 * @param listener the pit index to be notifed.
+	 * */
 	private void notifyListener(int listener)
 	{	pits[listener].stateChanged(new ChangeEvent(this));	}
+	
+	/**Fires the ChangeEvent to let all the pits know that the state has changed.
+	 * */
 	private void notifyAllListeners()
 	{
 		for(Pit pit : pits)
 			pit.stateChanged(new ChangeEvent(this));
 	}
+	/**saves the state of the game in case an undo is needed.
+	 * */
 	public void saveState()
 	{	
 		lastState = numberOfMarbles.clone();
 		lastPlayer = player;
 	}
+	
+	/**loads the lastState. To be used when undoing a move.
+	 * */
 	public void loadState()
 	{	
 		numberOfMarbles = lastState;
@@ -207,6 +213,9 @@ public class Model
 		notifyAllListeners();
 	}
 
+	/**This method allows us to follow the rule where if you end on one of your empty pits, you can take all the 
+	 * marbles in the pit opposite of that ending pit.
+	 * */
 	public void takeFromAcross(Pit emptyPit)
 	{
 		int pitNumber = emptyPit.getPitNumber();
