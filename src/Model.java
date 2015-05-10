@@ -17,14 +17,14 @@ public class Model
 	private Color color;
 	public static boolean PLAYER_A = false;
 	public static boolean PLAYER_B = true;
-	private int undoCount;
+	private boolean undone;
 	
 	/**Constructor for Model class.  Initializes pits and numberOfMarbles arrays.  Also initializes the lastState array.
 	 * lastState array will be used to undo changes.
 	 * */
 	public Model()
 	{
-		undoCount = 0;
+		undone = false;
 		pits = new Pit[14];
 		numberOfMarbles = new int[14];
 		lastState = new int[14];
@@ -45,6 +45,7 @@ public class Model
 	{
 		player = !player;
 	}
+	
 	/**setInitialNumberOfMarbles(int initialNumber) sets how many marbles are in each RegularPit at the start of the game
 	 * */
 	public void setInitialNumberOfMarbles(int initialNumber)
@@ -213,16 +214,23 @@ public class Model
 	 * */
 	public void loadState()
 	{	
-		if(undoCount < 2)
-		{
+		undone = true;
 		numberOfMarbles = lastState;
 		player = lastPlayer;
 		notifyAllListeners();
-		undoCount++;
-		}
-		else if(undoCount == 2)
-			undoCount = 0;
 	}
+	/**
+	 * Returns if the last move was undone
+	 * @return Returns true if the last move was undone, false otherwise
+	 */
+	public boolean wasUndone()
+	{	return undone;	}
+	
+	/**
+	 * Resets the undone variable to false.
+	 */
+	public void resetUndone()
+	{	undone = false;	}
 
 	/**This method allows us to follow the rule where if you end on one of your empty pits, you can take all the 
 	 * marbles in the pit opposite of that ending pit.

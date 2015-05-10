@@ -19,9 +19,10 @@ public class Board extends JFrame
 	/**
 	 * Constructor. Add all the pits to the panel.
 	 */
-	Model model;
-	JLabel winnerLabel;
-	JPanel centerPanel;
+	private Model model;
+	private int undoCount;
+	private JLabel winnerLabel;
+	private JPanel centerPanel;
 	private static int numberOfPits = 6;
 	
 	/**Constructor for the Board.  This is a JFrame and acts as the container for all the views and controllers.
@@ -90,7 +91,13 @@ public class Board extends JFrame
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
-			{	model.loadState();	}
+			{	
+				if(undoCount < 3)
+				{
+					model.loadState();
+					undoCount++;
+				}
+			}
 		});
 		centerPanel = new JPanel();
 		centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
@@ -119,6 +126,10 @@ public class Board extends JFrame
 					boolean player = model.getPlayer();
 					if(player == Model.PLAYER_B)
 					{
+						if(!model.wasUndone())
+							undoCount = 0;
+						else
+							model.resetUndone();
 						Pit cursor = pit;
 						model.saveState();
 						MancalaPit opponentsMancalaPit = model.getOpponentsMancalaPit(player);
@@ -179,6 +190,10 @@ public class Board extends JFrame
 					boolean player = model.getPlayer();
 					if(player == Model.PLAYER_A)
 					{
+						if(!model.wasUndone())
+							undoCount = 0;
+						else
+							model.resetUndone();
 						Pit cursor = pit;
 						MancalaPit opponentsMancalaPit = model.getOpponentsMancalaPit(player);
 						MancalaPit playersMancalaPit = model.getPlayersMancalaPit(player);
