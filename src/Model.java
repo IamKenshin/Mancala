@@ -136,6 +136,7 @@ public class Model
 			numberOfMarbles[pitNumber] = initialNumberOfMarbles;
 		else
 			numberOfMarbles[pitNumber] = 0;
+		saveState();
 	}
 	
 	/**This will check to see if a winner has been decided.
